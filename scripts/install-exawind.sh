@@ -43,8 +43,9 @@ if [ "${SPACK_MANAGER_MACHINE}" == 'eagle' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'crusher' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'frontier' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'sunspot' ] || \
+   [ "${SPACK_MANAGER_MACHINE}" == 'tds' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'azure' ]; then
-  cmd "spack manager create-env -y ${SPACK_MANAGER}/env-templates/exawind_${SPACK_MANAGER_MACHINE}.yaml -d ${SPACK_MANAGER}/environments/exawind-${SPACK_MANAGER_MACHINE}"
+  cmd "spack manager create-env -y ${SPACK_MANAGER}/env-templates/exawind_${SPACK_MANAGER_MACHINE}.yaml -d ${SPACK_MANAGER}/environments/exawind-${SPACK_MANAGER_MACHINE} || true"
 else
   cmd "spack manager create-env -s exawind+hypre+openfast+ninja -d ${SPACK_MANAGER}/environments/exawind-${SPACK_MANAGER_MACHINE}"
 fi
@@ -64,6 +65,7 @@ printf "\nInstalling environment...\n"
 for i in {1..4}; do
   cmd "nice spack install" &
 done; wait
+#cmd "nice spack install"
 if [ "${SPACK_MANAGER_MACHINE}" == 'azure' ]; then
   cmd "spack module refresh tcl -y"
 fi

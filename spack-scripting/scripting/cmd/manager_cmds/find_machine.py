@@ -65,6 +65,7 @@ machine_list = {
     "snl-hpc": MachineData(lambda: is_snl_hpc(socket.gethostname()), socket.gethostname()),
     # NREL
     "eagle": MachineData(lambda: os.environ["NREL_CLUSTER"] == "eagle", "eagle.hpc.nrel.gov"),
+    "tds": MachineData(lambda: os.environ["NREL_CLUSTER"] == "eyas", "eyas-gw.hpc.nrel.gov"),
     "rhodes": MachineData(lambda: os.environ["NREL_CLUSTER"] == "rhodes", "rhodes.hpc.nrel.gov"),
     "ellis": MachineData(lambda: os.environ["NREL_CLUSTER"] == "ellis", "ellis.hpc.nrel.gov"),
     # OLCF

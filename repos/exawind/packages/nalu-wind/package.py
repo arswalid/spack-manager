@@ -67,6 +67,9 @@ class NaluWind(SMCMakeExtension, bNaluWind, ROCmPackage):
         depends_on("trilinos cxxstd=%s" % std, when="cxxstd=%s" % std)
 
     def setup_build_environment(self, env):
+        env.append_flags("CXXFLAGS", "-dynamic-linker=/lib64/ld-linux-x86-64.so.2")
+        env.append_flags("CFLAGS", "-dynamic-linker=/lib64/ld-linux-x86-64.so.2")
+        env.append_flags("FFLAGS", "-dynamic-linker=/lib64/ld-linux-x86-64.so.2")
         if "~stk_simd" in self.spec:
             env.append_flags("CXXFLAGS", "-DUSE_STK_SIMD_NONE")
         if "+asan" in self.spec:
