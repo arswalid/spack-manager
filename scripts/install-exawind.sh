@@ -40,6 +40,7 @@ printf "\nCreating Spack environment...\n"
 if [ "${SPACK_MANAGER_MACHINE}" == 'eagle' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'summit' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'spock' ] || \
+   [ "${SPACK_MANAGER_MACHINE}" == 'kestrel' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'crusher' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'frontier' ] || \
    [ "${SPACK_MANAGER_MACHINE}" == 'sunspot' ] || \
@@ -57,7 +58,7 @@ cmd "spack env activate -d ${SPACK_MANAGER}/environments/exawind-${SPACK_MANAGER
 if [ "${SPACK_MANAGER_MACHINE}" == 'darwin' ]; then
   cmd "spack compiler find"
 fi
-
+cmd "spack clean -m"
 printf "\nConcretizing environment...\n"
 cmd "spack concretize -f"
 

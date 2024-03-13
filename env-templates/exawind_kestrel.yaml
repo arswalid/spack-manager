@@ -1,0 +1,13 @@
+spack:
+  include:
+  - include.yaml
+  concretizer:
+    unify: when_possible
+    reuse: false
+  view: false
+  specs:
+  - matrix:
+    - [exawind+ninja+hypre~amr_wind_gpu~nalu_wind_gpu~cuda]
+    - ['%gcc@10.1.0']
+  - exawind+ninja+hypre~amr_wind_gpu~nalu_wind_gpu~cuda%intel ^intel-oneapi-mpi %intel
+  - exawind+ninja+hypre~amr_wind_gpu~nalu_wind_gpu~cuda%intel ^cray-mpich 
